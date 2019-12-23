@@ -63,16 +63,18 @@ class Door(Item):
         self.emCimaQueijo = False
         self.queijo = None
 
+    # Move uma porta
     def move(self, init):
         if not self.moved:
+            # Verifica se porta não vai ser posta na mesma posição do jogador
             if self.x2_axis != init.player.x_axis or self.y2_axis != init.player.y_axis:
-                
+                # Verifica se porta não vai ser posta na mesma posição de um gato
                 for cat in init.list_cats:
                     if cat.x_axis == self.x2_axis and cat.y_axis == self.y2_axis:
                         return
                 
                 proxPos = init.get_map_item(self.x2_axis, self.y2_axis)
-
+                # Verifica se porta vai ser posta na mesma posição de um queijo
                 if isinstance(proxPos, Cheese):
                     self.emCimaQueijo = True
                     self.queijo = proxPos
@@ -80,7 +82,9 @@ class Door(Item):
                 self.moved = True
                 init.mapUpdate(self.x_axis, self.y_axis, self.x2_axis, self.y2_axis, self, False)
         else:
+            # Verifica se porta não vai ser posta na mesma posição do jogador
             if self.x_axis != init.player.x_axis or self.y_axis != init.player.y_axis:  
+                # Verifica se porta não vai ser posta na mesma posição de um gato
                 for cat in init.list_cats:
                     if cat.x_axis == self.x_axis and cat.y_axis == self.y_axis:
                         return
@@ -88,6 +92,7 @@ class Door(Item):
                 self.moved = False
                 init.mapUpdate(self.x2_axis, self.y2_axis, self.x_axis, self.y_axis, self, False)
 
+                # Verifica se porta estava anteriormente sobre um queijo (se sim, coloca ele de volta)
                 if self.emCimaQueijo:
                     init.mapInsert(self.x2_axis, self.y2_axis, self.queijo)
                     self.queijo = None

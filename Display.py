@@ -21,15 +21,16 @@ class Display:
     def __init__(self, largura, altura, init):
         self.screen = pygame.display.set_mode((largura,altura))
         self.init = init
-
         self.map_color_wall = BLUE
         self.map_color_wall_inv = RED
         self.map_color_background = BLACK
         self.map_size_cheese = self.init.size*0.5
 
+
     def get_screen(self):
         return self.screen
 
+    # Exibe mapa na tela
     def printMap(self):
         x_axis = 0
         y_axis = 0
@@ -58,6 +59,8 @@ class Display:
             x_axis = 0
             y_axis += self.init.size
 
+
+    # Exibe rodapé
     def rodape(self):
         pygame.font.init() # you have to call this at the start, 
                        # if you want to use this module.
@@ -86,6 +89,7 @@ class Display:
 
         pygame.draw.line(self.screen, WHITE, (0, 335), (self.init.larg, 335), 2)
 
+    # Exibe instruções
     def instrucoes(self):
         pygame.font.init()
         myfont = pygame.font.SysFont('Consolas', 15)
@@ -122,6 +126,8 @@ class Display:
         pygame.draw.line(self.screen, WHITE, (0, 445), (self.init.larg, 445), 2)
 
 
+    # Converte uma imagem em um retângulo com tamanho self.size e exibe ele nas
+    # coordenadas (x_axis, y_axis)
     def iconToRect(self, x_axis, y_axis, image):
         picture = pygame.image.load(image)
         picture = pygame.transform.scale(picture, (self.init.size, self.init.size))
@@ -129,6 +135,7 @@ class Display:
         rect = rect.move((x_axis, y_axis))
         self.screen.blit(picture, rect)
 
+    # Exibe menu de pausa
     def pauseMenu(self):
         pygame.mixer.music.load('music/pauseMenu.mp3')
         pygame.mixer.music.play(-1)
@@ -139,6 +146,7 @@ class Display:
 
         self.screen.fill(BLACK)
 
+        # Fica no menu de pausa até jogador sair dele
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -177,6 +185,7 @@ class Display:
             pygame.display.update()
             
 
+    # Exibe menu principal do jogo
     def mainMenu(self):
         pygame.mixer.music.load('music/mainMenu.mp3')
         pygame.mixer.music.play(-1)
@@ -187,6 +196,7 @@ class Display:
 
         self.screen.fill(BLACK)
 
+        # Fica no menu principal até jogador escolher uma opção
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -229,6 +239,7 @@ class Display:
 
             pygame.display.update()
 
+    # Exibe logo do jogo
     def logo(self):
         fontSize = 15
         title_align = 150
@@ -269,6 +280,7 @@ class Display:
         self.screen.blit(textsurface,(title_align,fontSize*7))
 
 
+    # Exibe mensagem de fim de jogo
     def fimJogo(self):
         pygame.mixer.music.load('music/fimJogo.mp3')
         pygame.mixer.music.play(-1)
@@ -299,6 +311,7 @@ class Display:
                 elif event.type == pygame.KEYDOWN:
                     return False
 
+    # Exibe mensagem de game over
     def gameOver(self):
         pygame.mixer.music.load('music/gameOver.mp3')
         pygame.mixer.music.play(-1)
