@@ -35,5 +35,9 @@ O projeto é uma modificação de um jogo de Atari chamado *Mouse Trap*, o qual 
 |Queijo          |`Q`
 
 ## Imagens
-![Main menu game](https://github.com/williamniemiec/PacBros/tree/master/media/game/inGameImage.PNG)
-![In-game imagem](https://github.com/williamniemiec/PacBros/tree/master/media/game/inGameImage0.PNG)
+
+#### Main menu game
+![Main menu game](https://github.com/williamniemiec/PacBros/blob/master/media/game/inGameImage0.PNG?raw=true)
+
+#### In-game imagem
+![In-game imagem](https://github.com/williamniemiec/PacBros/blob/master/media/game/inGameImage.PNG?raw=true)
